@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #FAFAF8;
+      color: #1E2A3A;
+      line-height: 1.7;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid #E0DDD6;
+      background: #FAFAF8;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: #1E2A3A;
+      text-decoration: none;
+    }
+
+    .logo span {
+      border-bottom: 2.5px solid #C8922A;
+      padding-bottom: 1px;
+    }
+
+    nav { display: flex; gap: 2.2rem; }
+
+    nav a {
+      text-decoration: none;
+      color: #4A5568;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    nav a:hover { color: #C8922A; border-bottom-color: #C8922A; }
+    nav a.active { color: #1E2A3A; border-bottom-color: #C8922A; font-weight: 600; }
+
+    /* ── PAGE LAYOUT ── */
+    .page {
+      max-width: 780px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+    }
+
+    .page-eyebrow {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #C8922A;
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    /* ── TWO-COLUMN INTRO ── */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Avatar placeholder — replace src with your photo */
+    .avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 3px solid #E8E4DC;
+    }
+
+    .intro-text p {
+      color: #4A5568;
+      margin-bottom: 1.1rem;
+      font-size: 1.05rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #E0DDD6;
+      margin: 3rem 0;
+    }
+
+    /* ── FACTS LIST ── */
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      color: #1E2A3A;
+    }
+
+    .facts {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .facts li {
+      font-size: 0.95rem;
+      color: #4A5568;
+      padding-left: 1.1em;
+      position: relative;
+    }
+
+    /* Amber bullet */
+    .facts li::before {
+      content: "▸";
+      color: #C8922A;
+      position: absolute;
+      left: 0;
+    }
+
+    /* ── SKILL TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: #F0EDE6;
+      color: #4A5568;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      border: 1px solid #DDD9D0;
+      /* title tooltip shown on hover */
+    }
+
+    /* ── CTA ── */
+    .cta-bar {
+      background: #1E2A3A;
+      color: #FAFAF8;
+      border-radius: 6px;
+      padding: 2rem 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .cta-bar p { font-size: 1rem; max-width: 420px; }
+    .cta-bar p strong { color: #E8B74A; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: #C8922A;
+      color: #fff;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn:hover { background: #a87620; transform: translateY(-1px); }
+
+    footer {
+      border-top: 1px solid #E0DDD6;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #9AA5B4;
+      margin-top: 5rem;
+    }
+
+    footer a { color: #C8922A; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem 1.4rem; }
+      .intro-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: 1fr; }
+      .cta-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo" title="Go back to Home">
+      <span>Muhammad Salman Ali Malik</span>
+    </a>
+    <nav>
+      <a href="index.html" title="Home page">Home</a>
+      <a href="about.html" class="active" title="You are here">About</a>
+      <a href="cv.html" title="My resume">CV</a>
+      <a href="contact.html" title="Get in touch">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <p class="page-eyebrow">Introduction</p>
+    <h1>A little about me.</h1>
+
+    <!-- ════════════════════════════
+         INTRO GRID: photo + text
+         Replace the img src with
+         your own photo link.
+    ═════════════════════════════════ -->
+    <div class="intro-grid">
+
+      <!--
+        Replace this src with a link to your photo.
+        alt="" describes the image for screen readers.
+        title="" adds a tooltip on hover.
+      -->
+      <img
+        src="data:image/jpeg;base64,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"
+        alt="my Photot"
+        title="That's me!"
+        class="avatar"
+      />
+
+      <div class="intro-text">
+        <p>
+          Hello! I'm <strong>Your Name</strong>, a student of [your subject]
+          at [your university/school]. I come from [your city] and I am
+          currently in my [year, e.g. second] year.
+        </p>
+        <p>
+          My interest in [your field] started when [tell a short honest story —
+          a class, a moment, something you built]. That curiosity has not stopped
+          since.
+        </p>
+        <p>
+          Outside of studying, I spend time [hobby 1], [hobby 2], and reading
+          about [topic you enjoy]. I believe that learning does not end inside
+          a classroom.
+        </p>
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ════════════════════
+         QUICK FACTS
+    ═════════════════════════ -->
+    <h2>A few quick facts</h2>
+    <ul class="facts">
+      <li title="Where I study">📍 NUST,Islamabad</li>
+    
+      <li title="Languages I speak"> Speaks [Language 1], [Language 2]</li>
+      <li title="Something I enjoy"> Passionate about learning new things</li>
+
+    </ul>
+
+    <hr class="divider" />
+
+    <!-- ════════════════════
+         SKILLS / INTERESTS
+    ═════════════════════════ -->
+    <h2>Skills &amp; interests</h2>
+    <p style="color:#4A5568; font-size:0.95rem; margin-bottom:0.8rem;">
+      Things I am learning, building, or genuinely curious about:
+    </p>
+    <div class="tags">
+      <!-- title="" adds a tooltip explaining each skill -->
+      <span class="tag" title="Markup language for web pages">HTML</span>
+      <span class="tag" title="Styling web pages">CSS</span>
+      <span class="tag" title="Your major subject">Your Subject</span>
+
+    </div>
+
+    <!-- ════════════════════
+         CALL TO ACTION BAR
+    ═════════════════════════ -->
+    <div class="cta-bar">
+      <p>
+        Want to know more about my background?<br />
+        <strong>My full CV is one click away.</strong>
+      </p>
+      <a href="cv.html" class="btn" title="Open my CV page">
+        View my CV →
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>© 2025 Muhammad Salman Ali Malik</span>
+    <a href="contact.html">Contact me</a>
+  </footer>
+
+</body>
+</html>
