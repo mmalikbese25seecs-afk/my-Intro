@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV / Resume</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #FAFAF8;
+      color: #1E2A3A;
+      line-height: 1.7;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid #E0DDD6;
+      background: #FAFAF8;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo { font-family: Georgia, serif; font-size: 1.35rem; font-weight: bold; color: #1E2A3A; text-decoration: none; }
+    .logo span { border-bottom: 2.5px solid #C8922A; padding-bottom: 1px; }
+    nav { display: flex; gap: 2.2rem; }
+    nav a { text-decoration: none; color: #4A5568; font-size: 0.95rem; padding-bottom: 2px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover { color: #C8922A; border-bottom-color: #C8922A; }
+    nav a.active { color: #1E2A3A; border-bottom-color: #C8922A; font-weight: 600; }
+
+    .page {
+      max-width: 780px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+    }
+
+    .page-eyebrow {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #C8922A;
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      color: #6B7280;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── CV IMAGE DISPLAY ── */
+    /*
+      This block shows your CV as an image
+      from an ImgBB (or any image hosting) link.
+      Replace the src in the <img> tag below.
+    */
+    .cv-image-wrapper {
+      border: 1px solid #E0DDD6;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(30,42,58,0.08);
+      margin-bottom: 2rem;
+    }
+
+    .cv-image-wrapper img {
+      width: 100%;
+      display: block;
+    }
+
+    .cv-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.6rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary { background: #1E2A3A; color: #FAFAF8; }
+    .btn-primary:hover { background: #C8922A; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: #1E2A3A;
+      border: 1.5px solid #C8922A;
+      color: #C8922A;
+    }
+    .btn-outline:hover { background: #C8922A; color: #fff; transform: translateY(-1px); }
+
+    /* ── HTML CV FALLBACK ── */
+    /*
+      Below the image, we also include a short
+      text version. This is good for accessibility
+      and for search engines to read.
+    */
+    .divider { border: none; border-top: 1px solid #E0DDD6; margin: 2.5rem 0; }
+
+    .cv-section { margin-bottom: 2.5rem; }
+
+    .cv-section h2 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      color: #1E2A3A;
+      border-left: 3px solid #C8922A;
+      padding-left: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cv-entry {
+      margin-bottom: 1.2rem;
+    }
+
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .cv-entry-title {
+      font-weight: 600;
+      font-size: 0.97rem;
+      color: #1E2A3A;
+    }
+
+    .cv-entry-date {
+      font-size: 0.82rem;
+      color: #9AA5B4;
+      white-space: nowrap;
+    }
+
+    .cv-entry-sub {
+      font-size: 0.9rem;
+      color: #6B7280;
+      margin-top: 0.15rem;
+    }
+
+    .cv-entry-desc {
+      font-size: 0.9rem;
+      color: #4A5568;
+      margin-top: 0.4rem;
+    }
+
+    footer {
+      border-top: 1px solid #E0DDD6;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #9AA5B4;
+      margin-top: 5rem;
+    }
+
+    footer a { color: #C8922A; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo" title="Home"><span>YourName</span></a>
+    <nav>
+      <a href="index.html" title="Home page">Home</a>
+      <a href="about.html" title="About me">About</a>
+      <a href="cv.html" class="active" title="You are here">CV</a>
+      <a href="contact.html" title="Contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <p class="page-eyebrow">Resume</p>
+    <h1>My CV</h1>
+    <p class="subtitle">
+      A snapshot of my education, experience, and skills.
+    </p>
+
+    <!-- ═══════════════════════════════════════
+         CV AS AN IMAGE (from ImgBB or any host)
+
+         HOW TO USE:
+         1. Upload your CV image to imgbb.com
+         2. Copy the "Direct link" (ends in .jpg or .png)
+         3. Paste it into the src="" below
+         4. The img will show your CV as a picture
+
+         title="" adds a tooltip when hovering the image.
+    ════════════════════════════════════════════ -->
+    <div class="cv-image-wrapper">
+      <img
+        src="https://i.ibb.co/REPLACE-WITH-YOUR-IMGBB-ID/your-cv.jpg"
+        alt="My CV / Resume"
+        title="This is my current CV — last updated [Month Year]"
+      />
+    </div>
+
+    <!-- Download / view buttons -->
+    <div class="cv-actions">
+      <!--
+        href below: replace with your CV PDF link
+        (Google Drive → share → "Anyone with link" → copy link)
+        target="_blank" opens in a new tab
+      -->
+      
+        href="#"
+        class="btn btn-primary"
+        title="Download my CV as a PDF"
+        target="_blank"
+      >
+        ⬇ Download PDF
+      </a>
+
+      
+        href="contact.html"
+        class="btn btn-outline"
+        title="Send me a message"
+      >
+        Contact me
+      </a>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══════════════════════════════════
+         TEXT VERSION OF CV
+         (Good for accessibility & SEO.
+          Fill in your real details below.)
+    ════════════════════════════════════════ -->
+
+    <div class="cv-section">
+      <h2>Education</h2>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">[Degree Name]</span>
+          <span class="cv-entry-date">2023 — Present</span>
+        </div>
+        <div class="cv-entry-sub">[University / College Name] — [City]</div>
+        <div class="cv-entry-desc">
+          Relevant coursework: [Subject 1], [Subject 2], [Subject 3].
+          Current GPA / Grade: [if you want to share it].
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">[School Name]</span>
+          <span class="cv-entry-date">Graduated [Year]</span>
+        </div>
+        <div class="cv-entry-sub">[City]</div>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h2>Experience</h2>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">[Role / Volunteer work / Project]</span>
+          <span class="cv-entry-date">[Month Year] — [Month Year]</span>
+        </div>
+        <div class="cv-entry-sub">[Organisation name]</div>
+        <div class="cv-entry-desc">
+          [One or two sentences on what you did and what you learned.]
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">[Another role or project]</span>
+          <span class="cv-entry-date">[Date]</span>
+        </div>
+        <div class="cv-entry-sub">[Where]</div>
+        <div class="cv-entry-desc">[What you did.]</div>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h2>Skills</h2>
+      <div class="cv-entry-desc">
+        <strong>Technical:</strong> HTML, CSS, [any software or tools]<br />
+        <strong>Languages:</strong> [Language 1] (native), [Language 2] (intermediate)<br />
+        <strong>Other:</strong> [Teamwork, research, writing — whatever is true]
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>© 2025 Your Name</span>
+    <a href="contact.html">Get in touch</a>
+  </footer>
+
+</body>
+</html>

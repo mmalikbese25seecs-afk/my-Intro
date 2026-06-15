@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #FAFAF8;
+      color: #1E2A3A;
+      line-height: 1.7;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid #E0DDD6;
+      background: #FAFAF8;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: #1E2A3A;
+      text-decoration: none;
+    }
+
+    .logo span {
+      border-bottom: 2.5px solid #C8922A;
+      padding-bottom: 1px;
+    }
+
+    nav { display: flex; gap: 2.2rem; }
+
+    nav a {
+      text-decoration: none;
+      color: #4A5568;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    nav a:hover { color: #C8922A; border-bottom-color: #C8922A; }
+    nav a.active { color: #1E2A3A; border-bottom-color: #C8922A; font-weight: 600; }
+
+    /* ── PAGE LAYOUT ── */
+    .page {
+      max-width: 780px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+    }
+
+    .page-eyebrow {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #C8922A;
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    /* ── TWO-COLUMN INTRO ── */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Avatar placeholder — replace src with your photo */
+    .avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 3px solid #E8E4DC;
+    }
+
+    .intro-text p {
+      color: #4A5568;
+      margin-bottom: 1.1rem;
+      font-size: 1.05rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #E0DDD6;
+      margin: 3rem 0;
+    }
+
+    /* ── FACTS LIST ── */
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      color: #1E2A3A;
+    }
+
+    .facts {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .facts li {
+      font-size: 0.95rem;
+      color: #4A5568;
+      padding-left: 1.1em;
+      position: relative;
+    }
+
+    /* Amber bullet */
+    .facts li::before {
+      content: "▸";
+      color: #C8922A;
+      position: absolute;
+      left: 0;
+    }
+
+    /* ── SKILL TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: #F0EDE6;
+      color: #4A5568;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      border: 1px solid #DDD9D0;
+      /* title tooltip shown on hover */
+    }
+
+    /* ── CTA ── */
+    .cta-bar {
+      background: #1E2A3A;
+      color: #FAFAF8;
+      border-radius: 6px;
+      padding: 2rem 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .cta-bar p { font-size: 1rem; max-width: 420px; }
+    .cta-bar p strong { color: #E8B74A; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: #C8922A;
+      color: #fff;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn:hover { background: #a87620; transform: translateY(-1px); }
+
+    footer {
+      border-top: 1px solid #E0DDD6;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #9AA5B4;
+      margin-top: 5rem;
+    }
+
+    footer a { color: #C8922A; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem 1.4rem; }
+      .intro-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: 1fr; }
+      .cta-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo" title="Go back to Home">
+      <span>YourName</span>
+    </a>
+    <nav>
+      <a href="index.html" title="Home page">Home</a>
+      <a href="about.html" class="active" title="You are here">About</a>
+      <a href="cv.html" title="My resume">CV</a>
+      <a href="contact.html" title="Get in touch">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <p class="page-eyebrow">Introduction</p>
+    <h1>A little about me.</h1>
+
+    <!-- ════════════════════════════
+         INTRO GRID: photo + text
+         Replace the img src with
+         your own photo link.
+    ═════════════════════════════════ -->
+    <div class="intro-grid">
+
+      <!--
+        Replace this src with a link to your photo.
+        alt="" describes the image for screen readers.
+        title="" adds a tooltip on hover.
+      -->
+      <img
+        src="https://via.placeholder.com/300x300?text=Your+Photo"
+        alt="A photo of Your Name"
+        title="That's me!"
+        class="avatar"
+      />
+
+      <div class="intro-text">
+        <p>
+          Hello! I'm <strong>Your Name</strong>, a student of [your subject]
+          at [your university/school]. I come from [your city] and I am
+          currently in my [year, e.g. second] year.
+        </p>
+        <p>
+          My interest in [your field] started when [tell a short honest story —
+          a class, a moment, something you built]. That curiosity has not stopped
+          since.
+        </p>
+        <p>
+          Outside of studying, I spend time [hobby 1], [hobby 2], and reading
+          about [topic you enjoy]. I believe that learning does not end inside
+          a classroom.
+        </p>
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ════════════════════
+         QUICK FACTS
+    ═════════════════════════ -->
+    <h2>A few quick facts</h2>
+    <ul class="facts">
+      <li title="Where I study">📍 [Your University], [City]</li>
+      <li title="My field of study">🎓 Studying [Subject]</li>
+      <li title="Languages I speak">🗣️ Speaks [Language 1], [Language 2]</li>
+      <li title="Something I enjoy">🎸 Passionate about [hobby]</li>
+      <li title="A goal I'm working toward">🎯 Goal: [your current goal]</li>
+      <li title="Something fun about me">⚡ Fun fact: [something interesting]</li>
+    </ul>
+
+    <hr class="divider" />
+
+    <!-- ════════════════════
+         SKILLS / INTERESTS
+    ═════════════════════════ -->
+    <h2>Skills &amp; interests</h2>
+    <p style="color:#4A5568; font-size:0.95rem; margin-bottom:0.8rem;">
+      Things I am learning, building, or genuinely curious about:
+    </p>
+    <div class="tags">
+      <!-- title="" adds a tooltip explaining each skill -->
+      <span class="tag" title="Markup language for web pages">HTML</span>
+      <span class="tag" title="Styling web pages">CSS</span>
+      <span class="tag" title="Your major subject">Your Subject</span>
+      <span class="tag" title="A tool you use">Tool / Software</span>
+      <span class="tag" title="A hobby or personal interest">Your Interest</span>
+      <span class="tag" title="A language you speak or study">A Language</span>
+    </div>
+
+    <!-- ════════════════════
+         CALL TO ACTION BAR
+    ═════════════════════════ -->
+    <div class="cta-bar">
+      <p>
+        Want to know more about my background?<br />
+        <strong>My full CV is one click away.</strong>
+      </p>
+      <a href="cv.html" class="btn" title="Open my CV page">
+        View my CV →
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>© 2025 Your Name</span>
+    <a href="contact.html">Contact me</a>
+  </footer>
+
+</body>
+</html>
