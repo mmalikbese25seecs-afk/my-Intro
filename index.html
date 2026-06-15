@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio — Home</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #FAFAF8;
+      color: #1E2A3A;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER / NAV ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid #E0DDD6;
+      background: #FAFAF8;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: #1E2A3A;
+      text-decoration: none;
+      /* Tooltip shown via title attribute */
+    }
+
+    /* Animated underline on logo */
+    .logo span {
+      display: inline-block;
+      border-bottom: 2.5px solid #C8922A;
+      padding-bottom: 1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4A5568;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    nav a:hover {
+      color: #C8922A;
+      border-bottom-color: #C8922A;
+    }
+
+    nav a.active {
+      color: #1E2A3A;
+      border-bottom-color: #C8922A;
+      font-weight: 600;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 780px;
+      margin: 6rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #C8922A;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      color: #1E2A3A;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #C8922A;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #4A5568;
+      max-width: 560px;
+      margin-bottom: 2.4rem;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.8rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #1E2A3A;
+      color: #FAFAF8;
+    }
+
+    .btn-primary:hover {
+      background: #C8922A;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #1E2A3A;
+      border: 1.5px solid #1E2A3A;
+    }
+
+    .btn-outline:hover {
+      border-color: #C8922A;
+      color: #C8922A;
+      transform: translateY(-1px);
+    }
+
+    /* ── CARDS SECTION ── */
+    .cards-section {
+      max-width: 780px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9AA5B4;
+      margin-bottom: 1.8rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.4rem;
+    }
+
+    /* Card with tooltip via title attribute */
+    .card {
+      background: #fff;
+      border: 1px solid #E8E4DC;
+      border-radius: 6px;
+      padding: 1.6rem;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: block;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(30,42,58,0.10);
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: #1E2A3A;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: #6B7280;
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid #E0DDD6;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #9AA5B4;
+      margin-top: 4rem;
+    }
+
+    footer a { color: #C8922A; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════
+       HEADER
+       The "sticky" position keeps
+       the nav visible while scrolling.
+  ════════════════════════════════ -->
+  <header>
+    <!-- title="" is an HTML tooltip — hover over it! -->
+    <a href="index.html" class="logo" title="Back to Home">
+      <span>YourName</span>
+    </a>
+
+    <nav>
+      <a href="index.html" class="active" title="You are here">Home</a>
+      <a href="about.html" title="Learn more about me">About</a>
+      <a href="cv.html" title="View my resume">CV</a>
+      <a href="contact.html" title="Get in touch">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════
+       HERO SECTION
+       The first thing visitors see.
+       clamp() makes font-size responsive
+       without media queries.
+  ════════════════════════════════ -->
+  <main>
+    <section class="hero">
+      <p class="hero-eyebrow">Welcome to my portfolio</p>
+
+      <h1>
+        Hi, I'm <em>Salman</em> —<br />
+        A software engineering student.
+      </h1>
+
+      <p>
+        I'm studying SE and building things one line of code at a time.
+        This site is my corner of the web — a place for my work, my CV, and a way to reach me.
+      </p>
+
+      <!-- Two call-to-action buttons -->
+      <div class="btn-group">
+        <a href="about.html" class="btn btn-primary" title="Read my full introduction">
+          Meet me →
+        </a>
+        <a href="cv.html" class="btn btn-outline" title="Open my resume page">
+          View my CV
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         QUICK LINKS CARDS
+         Each card links to a page.
+         title="" adds a native tooltip.
+    ════════════════════════════════ -->
+    <section class="cards-section">
+      <p class="section-label">Explore</p>
+      <div class="cards">
+
+        <a href="about.html" class="card"
+           title="Find out who I am and what drives me">
+          <div class="card-icon">👤</div>
+          <h3>About Me</h3>
+          <p>My background, interests, and what I am currently learning.</p>
+        </a>
+
+        <a href="cv.html" class="card"
+           title="My education, skills, and experience at a glance">
+          <div class="card-icon">📄</div>
+          <h3>CV / Resume</h3>
+          <p>A full picture of my education, skills, and experience.</p>
+        </a>
+
+        <a href="contact.html" class="card"
+           title="Send me a message or connect on social media">
+          <div class="card-icon">✉️</div>
+          <h3>Contact</h3>
+          <p>Reach out — I'm always open to new conversations.</p>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════════════════
+       FOOTER
+  ════════════════════════════════ -->
+  <footer>
+    <span>© 2025 Muhammad Salman Ali Malik</span>
+    <span>Built with plain HTML — <a href="about.html">my story</a></span>
+  </footer>
+
+</body>
+</html>
